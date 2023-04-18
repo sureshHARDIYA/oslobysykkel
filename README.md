@@ -14,5 +14,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 2. Install dependencies `yarn`. If using `npm`, do `npm install`. 
 3. Start the `yarn start`. If using `npm` do, `npm run start`.
 
-Runs the app in development mode. Open http://localhost:3000 to view it in the browser.
+Runs the app in development mode. Open http://localhost:3000 to view it in the browser and should look like: 
 
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/2022919/232900487-87387ddd-8474-4f50-abf2-04e56132fb19.png">
+
+## UI Features
+
+- Client side pagination
+- Client side search
+- Filters
