@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Required Dependencies
 
-1. (`NodeJs`)[https://nodejs.org/en]
-2. Either `npm`, `pnpm` or `yarn`. For this project, I used (`yarn`)[https://classic.yarnpkg.com/en/]
+1. (NodeJs)[https://nodejs.org/en]
+2. Install either `npm`, `pnpm` or `yarn`. For this project, I used (yarn)[https://classic.yarnpkg.com/en/]
 
 
 ## Get started 
