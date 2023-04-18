@@ -1,0 +1,50 @@
+{
+  "name": "oslobysykkel",
+  "version": "0.1.0",
+  "author": {
+    "name": "Suresh Kumar Mukhiya",
+    "email": "itsmeskm99@gmail.com",
+    "url": "https://www.skmukhiya.com.np"
+  },
+  "private": true,
+  "dependencies": {
+    "@types/node": "^16.18.23",
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "ky": "^0.33.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "@ag-grid-community/react": "^29.2.0",
+    "@ag-grid-community/core": "^29.2.0",
+    "@ag-grid-community/styles": "^29.2.0",
+    "@ag-grid-community/client-side-row-model": "^29.2.0",
+    "@ag-grid-enterprise/core": "^29.2.0",
+    "@ag-grid-enterprise/set-filter": "^29.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
