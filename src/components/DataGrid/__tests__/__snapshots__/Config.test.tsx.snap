@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Config should match the snapshot for ColumnNames 1`] = `
+Array [
+  Object {
+    "field": "station_id",
+    "headerName": "Station ID",
+    "width": 200,
+  },
+  Object {
+    "field": "name",
+    "filter": "agSetColumnFilter",
+    "headerName": "Station Name",
+  },
+  Object {
+    "field": "address",
+    "headerName": "Address",
+  },
+  Object {
+    "field": "num_bikes_available",
+    "filter": "agNumberColumnFilter",
+    "headerName": "Number of available bikes",
+  },
+  Object {
+    "field": "num_docks_available",
+    "filter": "agNumberColumnFilter",
+    "headerName": "Number of available docks",
+  },
+  Object {
+    "field": "capacity",
+    "filter": "agNumberColumnFilter",
+    "headerName": "Capacity",
+    "width": 150,
+  },
+  Object {
+    "field": "is_renting",
+    "headerName": "Is renting?",
+  },
+]
+`;
+
+exports[`Config should match the snapshot for DefaultColumns 1`] = `
+Object {
+  "filter": "agTextColumnFilter",
+  "floatingFilter": true,
+  "resizable": true,
+  "sortable": true,
+  "width": 250,
+}
+`;
