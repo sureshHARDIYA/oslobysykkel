@@ -1,25 +1,27 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react';
 
-import ErrorBoundary  from '../ErrorBoundry'
+import ErrorBoundary from '../ErrorBoundry';
 
 describe('ErrorBoundary', () => {
   it('renders "Something went wrong." when an error is thrown', () => {
-    const spy = jest.spyOn(console, 'error')
+    const spy = jest.spyOn(console, 'error');
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    spy.mockImplementation(() => {})
+    spy.mockImplementation(() => {});
 
     const Throw = () => {
-      throw new Error('bad')
-    }
+      throw new Error('bad');
+    };
 
     render(
-        <ErrorBoundary fallback={<p>Something went wrong</p>}>
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
         <Throw />
-      </ErrorBoundary>
-    )
+      </ErrorBoundary>,
+    );
 
-    expect(screen.getByText('Something went wrong')).toBeDefined()
+    expect(
+      screen.getByText('Something went wrong'),
+    ).toBeDefined();
 
-    spy.mockRestore()
-  })
-})
+    spy.mockRestore();
+  });
+});
