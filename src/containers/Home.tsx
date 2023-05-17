@@ -1,13 +1,18 @@
-import { useRef } from "react";
-import { AgGridReact } from "@ag-grid-community/react";
+import { useRef } from 'react';
+import { AgGridReact } from '@ag-grid-community/react';
 
-import Header from "../components/Header";
-import DataGrid from "../components/DataGrid/DataGrid";
-import { usePrepareData } from "../hooks/usePrepareData";
+import Header from '../components/Header';
+import DataGrid from '../components/DataGrid/DataGrid';
+import { usePrepareData } from '../hooks/usePrepareData';
 
 const Home = () => {
-  const { defaultColDef, columnDefs, rowData, isError, error } =
-    usePrepareData();
+  const {
+    defaultColDef,
+    columnDefs,
+    rowData,
+    isError,
+    error,
+  } = usePrepareData();
 
   const gridRef = useRef<AgGridReact>(null);
 

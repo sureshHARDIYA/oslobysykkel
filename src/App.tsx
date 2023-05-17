@@ -1,7 +1,10 @@
-import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
-import Home from "./containers/Home";
-import ErrorBoundary from "./components/ErrorBoundry";
+import Home from './containers/Home';
+import ErrorBoundary from './components/ErrorBoundry';
 
 const queryClient = new QueryClient();
 

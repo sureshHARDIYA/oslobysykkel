@@ -1,6 +1,6 @@
 import { DefaultColumns, ColumnNames } from '../Config';
 
-describe('Config', () => {
+describe('Components: Config', () => {
   it('should match the snapshot for DefaultColumns', () => {
     expect(DefaultColumns).toMatchSnapshot();
   });

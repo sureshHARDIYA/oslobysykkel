@@ -1,10 +1,13 @@
-import ky from "ky";
-import { useQueries } from "react-query";
-import { ColDef } from "@ag-grid-community/core";
-import { useEffect, useMemo, useState } from "react";
+import ky from 'ky';
+import { ColDef } from '@ag-grid-community/core';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useMemo, useState } from 'react';
 
-import API from "../config/API";
-import { ColumnNames, DefaultColumns } from "../components/DataGrid/Config";
+import API from '../config/API';
+import {
+  ColumnNames,
+  DefaultColumns,
+} from '../components/DataGrid/Config';
 
 type Station = {
   station_id: string;
@@ -23,59 +26,95 @@ type StationStatus = {
 type ROWDATA = Station & StationStatus;
 
 export const usePrepareData = () => {
-  const defaultColDef = useMemo<ColDef>(() => DefaultColumns, []);
+  const defaultColDef = useMemo<ColDef>(
+    () => DefaultColumns,
+    [],
+  );
+  const [isErrorFetching, setIsErrorFetching] =
+    useState(false);
 
   const columnDefs = ColumnNames;
 
   const [rowData, setRowData] = useState<ROWDATA[]>();
 
-  const queryResults = useQueries([
-    {
-      queryKey: "stations",
-      queryFn: async () => {
-        const response = await ky
+  const stations = useQuery({
+    queryKey: ['stations'],
+    queryFn: async () => {
+      try {
+        const response: any = await ky
           .get(API.STATION_INFO)
-          .json<{ data: { stations: Station[] } }>();
+          .json();
         return response.data.stations;
-      },
+      } catch (error) {
+        setIsErrorFetching(true);
+        throw new Error('Failed to fetch station info');
+      }
     },
-    {
-      queryKey: "stationStatus",
-      queryFn: async () => {
-        const response = await ky
+  });
+
+  const stationStatus = useQuery({
+    queryKey: ['stationStatus'],
+    queryFn: async () => {
+      try {
+        const response: any = await ky
           .get(API.STATION_STATUS)
-          .json<{ data: { stations: StationStatus[] } }>();
+          .json();
         return response.data.stations;
-      },
+      } catch (error) {
+        setIsErrorFetching(true);
+        throw new Error('Failed to fetch station status');
+      }
     },
-  ]);
+  });
 
   useEffect(() => {
-    if (queryResults) {
-      const stations = queryResults[0].data as Station[];
-      const stationStatus = queryResults[1].data as StationStatus[];
-      const data = stations?.map((station) => {
-        const status = stationStatus?.find(
-          (s) => s.station_id === station.station_id
-        );
-        return {
-          station_id: station.station_id,
-          name: station.name,
-          num_bikes_available: status?.num_bikes_available ?? 0,
-          num_docks_available: status?.num_docks_available ?? 0,
-          is_renting: status?.is_renting ?? 0,
-          capacity: station.capacity ?? 0,
-          address: station.address,
-        };
-      });
+    if (stations.isSuccess && stationStatus.isSuccess) {
+      const stationsData = stations.data as Station[];
+      const stationStatusData =
+        stationStatus.data as StationStatus[];
+      if (Array.isArray(stationsData)) {
+        const data = stationsData.map((station) => {
+          const status = stationStatusData?.find(
+            (s) => s.station_id === station.station_id,
+          );
+          return {
+            station_id: station.station_id,
+            name: station.name,
+            capacity: station.capacity ?? 0,
+            address: station.address,
+            num_bikes_available:
+              status?.num_bikes_available ?? 0,
+            num_docks_available:
+              status?.num_docks_available ?? 0,
+            is_renting: status?.is_renting ?? 0,
+          };
+        });
 
-      setRowData(data);
+        setRowData(data);
+      }
     }
-  }, [queryResults]);
+  }, [
+    stations.isSuccess,
+    stationStatus.isSuccess,
+    stations.data,
+    stationStatus.data,
+  ]);
 
   // Handle errors
-  const isError = queryResults.some((result) => result.isError);
-  const error = isError ? "API is down" : null;
+  const isError =
+    stations.isError ||
+    stationStatus.isError ||
+    isErrorFetching;
+  const error = isError ? 'API is down' : null;
+  const isSuccess =
+    stations.isSuccess && stationStatus.isSuccess;
 
-  return { defaultColDef, columnDefs, rowData, isError, error };
+  return {
+    defaultColDef,
+    columnDefs,
+    rowData,
+    isError,
+    error,
+    isSuccess,
+  };
 };

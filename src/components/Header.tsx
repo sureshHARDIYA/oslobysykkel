@@ -1,12 +1,16 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
-import "../App.css";
+import '../App.css';
 
 const Header = ({ gridRef }: { gridRef: any }) => {
   const onFilterTextBoxChanged = useCallback(() => {
     if (gridRef) {
       gridRef.current.api.setQuickFilter(
-        (document.getElementById("filter-text-box") as HTMLInputElement).value
+        (
+          document.getElementById(
+            'filter-text-box',
+          ) as HTMLInputElement
+        ).value,
       );
     }
   }, [gridRef]);

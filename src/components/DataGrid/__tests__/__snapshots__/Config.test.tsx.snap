@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Config should match the snapshot for ColumnNames 1`] = `
+exports[`Components: Config should match the snapshot for ColumnNames 1`] = `
 Array [
   Object {
     "field": "station_id",
@@ -39,7 +39,7 @@ Array [
 ]
 `;
 
-exports[`Config should match the snapshot for DefaultColumns 1`] = `
+exports[`Components: Config should match the snapshot for DefaultColumns 1`] = `
 Object {
   "filter": "agTextColumnFilter",
   "floatingFilter": true,

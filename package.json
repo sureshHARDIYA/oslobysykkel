@@ -8,24 +8,26 @@
   },
   "private": true,
   "dependencies": {
-    "@types/node": "^16.18.23",
-    "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
+    "@ag-grid-community/client-side-row-model": "^29.2.0",
+    "@ag-grid-community/core": "^29.2.0",
+    "@ag-grid-community/react": "^29.2.0",
+    "@ag-grid-community/styles": "^29.2.0",
+    "@ag-grid-enterprise/core": "^29.2.0",
+    "@ag-grid-enterprise/set-filter": "^29.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/node": "^16.18.23",
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
     "ky": "^0.33.3",
+    "nock": "^13.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-query": "^3.39.3",
+    "@tanstack/react-query": "^4.7.1",
+    "@tanstack/react-query-devtools": "^4.7.1",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "@ag-grid-community/react": "^29.2.0",
-    "@ag-grid-community/core": "^29.2.0",
-    "@ag-grid-community/styles": "^29.2.0",
-    "@ag-grid-community/client-side-row-model": "^29.2.0",
-    "@ag-grid-enterprise/core": "^29.2.0",
-    "@ag-grid-enterprise/set-filter": "^29.2.0"
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -50,5 +52,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(ky))"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }
