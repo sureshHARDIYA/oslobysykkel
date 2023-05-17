@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import ErrorBoundary from '../ErrorBoundry';
 
-describe('ErrorBoundary', () => {
+describe('Components: ErrorBoundary', () => {
   it('renders "Something went wrong." when an error is thrown', () => {
     const spy = jest.spyOn(console, 'error');
     // eslint-disable-next-line @typescript-eslint/no-empty-function

@@ -65,9 +65,10 @@ jest.mock('@tanstack/react-query', () => ({
   },
 }));
 
-describe('usePrepareData', () => {
+describe('Hooks: usePrepareData', () => {
   beforeEach(() => {
-    jest.clearAllMocks(); // Reset all mocks before each test
+    // Reset all mocks before each test
+    jest.clearAllMocks();
   });
 
   it('fetches and prepares data correctly', async () => {

@@ -6,7 +6,7 @@ import {
 
 import Header from '../Header';
 
-describe('Header', () => {
+describe('Components: Header', () => {
   it('should call onFilterTextBoxChanged when input value changes', () => {
     // Mock gridRef
     const gridRef = {

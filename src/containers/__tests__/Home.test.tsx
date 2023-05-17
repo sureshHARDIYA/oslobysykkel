@@ -33,7 +33,7 @@ jest.mock('@ag-grid-community/react', () => {
   };
 });
 
-describe('Home', () => {
+describe('Container: Home', () => {
   it('renders the data grid when data is available', () => {
     render(<Home />);
 
