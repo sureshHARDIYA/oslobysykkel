@@ -14,19 +14,26 @@
     "@ag-grid-community/styles": "^29.2.0",
     "@ag-grid-enterprise/core": "^29.2.0",
     "@ag-grid-enterprise/set-filter": "^29.2.0",
+    "@ant-design/icons": "^5.1.0",
+    "@tanstack/react-query": "^4.7.1",
+    "@tanstack/react-query-devtools": "^4.7.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
+    "antd": "^5.5.0",
+    "fuse.js": "^6.6.2",
     "ky": "^0.33.3",
+    "leaflet": "^1.9.4",
     "nock": "^13.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@tanstack/react-query": "^4.7.1",
-    "@tanstack/react-query-devtools": "^4.7.1",
+    "react-icons": "^4.8.0",
+    "react-leaflet": "^4.2.1",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.0.0-rc.1",
     "typescript": "^4.9.5"
   },
   "scripts": {
@@ -60,5 +67,8 @@
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     }
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.3"
   }
 }
