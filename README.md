@@ -34,3 +34,5 @@ Runs the app in development mode. Open http://localhost:3000 to view it in the b
 2. - Lag en responsiv webløsning som visualiser lista på en eller annen måte i et kart
 
 - Solution to this is on branch `kart_visualisering`
+
+![image](https://github.com/sureshHARDIYA/oslobysykkel/assets/2022919/406f1edd-2898-4f2c-93e4-516350673f0a)
