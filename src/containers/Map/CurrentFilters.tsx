@@ -1,4 +1,5 @@
-import { Tag } from 'antd';
+import { Tag, Row } from 'antd';
+import styled from 'styled-components';
 
 import { CurrentFilterProps, FilterProps } from '../types';
 import { capitalizeFirstCharacter } from '../../utils/captializeFirstCharacter';
@@ -12,7 +13,7 @@ const CurrentFilter = ({
   form,
 }: CurrentFilterProps) => {
   return (
-    <>
+    <StyledRow>
       {isShowClearAll && (
         <Tag
           color="grey"
@@ -57,8 +58,12 @@ const CurrentFilter = ({
 
         return null;
       })}
-    </>
+    </StyledRow>
   );
 };
 
 export default CurrentFilter;
+
+const StyledRow = styled(Row)`
+  margin-bottom: 1rem;
+`;

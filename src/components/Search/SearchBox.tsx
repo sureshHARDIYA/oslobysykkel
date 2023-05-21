@@ -1,5 +1,4 @@
-import { Col, Button, Input } from 'antd';
-import { GrMapLocation } from 'react-icons/gr';
+import { Col, Input } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 
 import { StyledRow } from '../../containers/Home';
@@ -26,15 +25,6 @@ const SearchBox = ({ onSearch }: any): JSX.Element => {
           suffix={suffix}
           onSearch={onSearch}
         />
-      </Col>
-      <Col flex="200px">
-        <Button
-          type="dashed"
-          icon={<GrMapLocation />}
-          size="large"
-        >
-          Use my location
-        </Button>
       </Col>
     </StyledRow>
   );
