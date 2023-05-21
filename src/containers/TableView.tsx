@@ -27,6 +27,7 @@ const TableView = ({
       <SearchBox onSearch={onFilterTextBoxChanged} />
       <DataGrid>
         <AgGridReact
+          enableCellTextSelection
           rowData={rowData}
           columnDefs={columnDefs}
           suppressRowTransform={true}

@@ -19,7 +19,7 @@ const SearchBox = ({ onSearch }: any): JSX.Element => {
     <StyledRow gutter={[16, 48]}>
       <Col flex="auto">
         <Search
-          placeholder="Search by address"
+          placeholder="Search for anything"
           enterButton="Search"
           size="large"
           suffix={suffix}
