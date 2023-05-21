@@ -26,18 +26,12 @@ export const ToolBar = ({
             value={mode}
             style={{ marginBottom: 8 }}
             size="large"
+            data-cy="map-view"
           >
-            <Radio.Button
-              value="MAP"
-              style={{ zIndex: 1 }}
-              data-cy="map-view"
-            >
+            <Radio.Button value="MAP" style={{ zIndex: 1 }}>
               Map <GrMapLocation />
             </Radio.Button>
-            <Radio.Button
-              value="TABLE"
-              data-cy="table-view"
-            >
+            <Radio.Button value="TABLE">
               Table <TableOutlined />
             </Radio.Button>
           </Radio.Group>

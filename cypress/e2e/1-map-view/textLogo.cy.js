@@ -3,7 +3,7 @@
 
 describe('Should render the app with Logo', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/');
+    cy.visit('https://oslobysykkelskm.netlify.app/');
   });
 
   it('Should render the logo', () => {
@@ -19,9 +19,7 @@ describe('Should render the app with Logo', () => {
   });
 
   it('should change views from map to table', () => {
-    cy.get('[data-cy="breadcrumb"]')
-      .children()
-      .last()
-      .click();
+    cy.get('[data-cy="table-view"]')
+    .click();
   });
 });
