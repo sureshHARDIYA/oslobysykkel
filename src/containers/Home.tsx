@@ -70,7 +70,6 @@ const Home = () => {
           )}
           {!isError && mode === VIEWS.MAP && (
             <MapView
-              mode={mode}
               rowData={rowData}
               isSuccess={isSuccess}
             />

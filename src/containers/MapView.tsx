@@ -1,26 +1,20 @@
-import { Skeleton, Row, Col } from 'antd';
+import { Skeleton, Row, Col, Form } from 'antd';
 import { useState, useEffect, useCallback } from 'react';
 
 import searchMarkers, {
   removeEmptyKeys,
 } from '../utils/searchMarkers';
+import { FilterProps } from './types';
+import { MapViewProps } from '../types';
 import FilterBox from './Map/FilterBox';
 import MapLandingPage from './Map/LandingPage';
+import { initialValues } from './Map/constants';
 import useIsMounted from '../hooks/useIsMounted';
-
-import 'leaflet/dist/leaflet.css';
 import CurrentFilter from './Map/CurrentFilters';
 
-export const initialValues = {
-  name: '',
-  address: '',
-  num_docks_available: 0,
-  num_bikes_available: 0,
-  capacity: 0,
-  is_renting: true,
-};
+import 'leaflet/dist/leaflet.css';
 
-const MapView = ({ rowData, isSuccess }: any) => {
+const MapView = ({ rowData, isSuccess }: MapViewProps) => {
   const isMounted = useIsMounted();
 
   const [filteredRows, setFilteredRows] = useState(() =>
@@ -43,22 +37,35 @@ const MapView = ({ rowData, isSuccess }: any) => {
   };
 
   const onFinish = useCallback(() => {
-    const filterDed = searchMarkers(rowData, formValues);
+    if (rowData) {
+      const filterDed = searchMarkers(rowData, formValues);
 
-    setFilteredRows(filterDed);
+      setFilteredRows(filterDed);
+    }
   }, [rowData, formValues]);
 
+  const onFilterValueChange = (
+    filterValues: FilterProps,
+  ) => {
+    setFormValues({ ...filterValues });
+    setShowClearAll(true);
+  };
+
+  /**
+   * We want to render progress div (Skeleton) when
+   * API call is in progress, to make sure user knows
+   * something is happening. Show map, when data is available.
+   */
   useEffect(() => {
     if (isSuccess && isMounted()) {
       setFilteredRows(rowData);
     }
   }, [isSuccess, isMounted, rowData]);
 
-  const onFilterValueChange = (filterValues: any) => {
-    setFormValues({ ...filterValues });
-    setShowClearAll(true);
-  };
-
+  /**
+   * Interact with the form filters, this form would have been much better with
+   * react-hook-form, but is okay for proof-of-concept.
+   */
   useEffect(() => {
     if (formValues === initialValues) {
       setShowClearAll(false);
@@ -78,6 +85,7 @@ const MapView = ({ rowData, isSuccess }: any) => {
   };
 
   const actFilered = removeEmptyKeys(formValues);
+  const [form] = Form.useForm();
 
   return (
     <div>
@@ -91,12 +99,13 @@ const MapView = ({ rowData, isSuccess }: any) => {
           style={{ paddingRight: '50px' }}
         >
           <FilterBox
-            filteredRows={filteredRows}
+            filteredRows={rowData}
             onFinish={onFinish}
             setFormValues={setFormValues}
             onSliderChange={onSliderChange}
             formValues={formValues}
             onFilterValueChange={onFilterValueChange}
+            form={form}
           />
         </Col>
         <Col xs={24} sm={24} md={24} lg={16} xl={18}>
@@ -120,12 +129,10 @@ const MapView = ({ rowData, isSuccess }: any) => {
               setFormValues={setFormValues}
               initialValues={initialValues}
               isShowClearAll={isShowClearAll}
+              form={form}
             />
           )}
-          <MapLandingPage
-            rowData={filteredRows}
-            setFilteredRows={setFilteredRows}
-          />
+          <MapLandingPage rowData={filteredRows} />
         </Col>
       </Row>
     </div>

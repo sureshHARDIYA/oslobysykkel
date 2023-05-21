@@ -15,3 +15,8 @@ export interface StationStatus {
 }
 
 export type ROWDATA = Station & StationStatus;
+
+export interface MapViewProps {
+  rowData: ROWDATA[] | undefined;
+  isSuccess: boolean;
+}

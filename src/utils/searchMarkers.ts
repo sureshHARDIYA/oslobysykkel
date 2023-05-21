@@ -1,11 +1,13 @@
 import { ROWDATA } from '../types';
 
-type SO = Omit<
+export type SO = Omit<
   ROWDATA,
   'lat' | 'lon' | 'station_id' | 'is_renting'
 >;
 
-export const removeEmptyKeys = (obj: any): SO => {
+export const removeEmptyKeys = (
+  obj: Record<string, unknown>,
+): SO => {
   Object.keys(obj).forEach((key) => {
     if (
       obj[key] === null ||
@@ -17,13 +19,13 @@ export const removeEmptyKeys = (obj: any): SO => {
     }
   });
 
-  return obj;
+  return obj as SO;
 };
 
 const searchMarkers = (
   markers: ROWDATA[],
   searchObject: SO,
-): any => {
+): ROWDATA[] => {
   const searchFor = removeEmptyKeys(searchObject);
 
   return markers.filter((marker) => {

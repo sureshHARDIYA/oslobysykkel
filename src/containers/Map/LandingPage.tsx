@@ -8,16 +8,22 @@ import {
 import L from 'leaflet';
 import { useEffect } from 'react';
 
+import { ROWDATA } from '../../types';
+
 import 'leaflet/dist/leaflet.css';
 
-const MapLandingPage = ({ rowData }: any) => {
+const MapLandingPage = ({
+  rowData,
+}: {
+  rowData: ROWDATA[] | undefined;
+}) => {
   const FitBounds = () => {
     const map = useMap();
 
     useEffect(() => {
       // Fit the map to contain all markers when the component mounts
-      if (rowData?.length > 0) {
-        const data = rowData?.map((marker: any) => [
+      if (rowData && rowData?.length > 0) {
+        const data: any = rowData?.map((marker) => [
           marker.lat,
           marker.lon,
         ]);
@@ -42,19 +48,24 @@ const MapLandingPage = ({ rowData }: any) => {
           <Marker
             key={marker.station_id}
             position={[marker.lat, marker.lon]}
-            // icon={markerIcon}
           >
             <Popup>
               <div>
-                <h3>{marker.name}</h3>
-                <p>Address: {marker.address}</p>
-                <p>Capacity: {marker.capacity}</p>
+                <h2>{marker.name}</h2>
                 <p>
-                  Bikes Available:{' '}
+                  <strong>Address: </strong>{' '}
+                  {marker.address}
+                </p>
+                <p>
+                  <strong>Capacity: </strong>
+                  {marker.capacity}
+                </p>
+                <p>
+                  <strong>Bikes Available: </strong>
                   {marker.num_bikes_available}
                 </p>
                 <p>
-                  Docks Available:{' '}
+                  <strong>Docks Available: </strong>
                   {marker.num_docks_available}
                 </p>
               </div>

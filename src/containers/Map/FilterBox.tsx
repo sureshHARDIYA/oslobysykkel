@@ -1,15 +1,18 @@
+import { Form, Switch } from 'antd';
 import { ReactElement } from 'react';
-import { Form, Input, Switch, AutoComplete } from 'antd';
 
+import { ROWDATA } from '../../types';
 import { FilterBoxProps } from '../types';
-import { initialValues } from '../MapView';
+import { initialValues } from './constants';
 import IntegerStep from '../../components/Form/IntegerStep';
+import FormAutoComplete from '../../components/Form/AutoComplete';
 
 const FilterBox = ({
   onSliderChange,
   formValues,
   onFilterValueChange,
   filteredRows,
+  form,
 }: FilterBoxProps): ReactElement => {
   return (
     <Form
@@ -21,76 +24,35 @@ const FilterBox = ({
           ...changedValues,
         });
       }}
+      form={form}
     >
-      <Form.Item
+      <FormAutoComplete
+        formValues={formValues}
+        onSliderChange={onSliderChange}
+        onFilterValueChange={onFilterValueChange}
         label="Address"
-        labelAlign="left"
         name="address"
-      >
-        <AutoComplete
-          allowClear
-          value={formValues.address}
-          options={filteredRows?.map((item: any) => ({
-            label: item.address,
-            key: item.station_id,
-            value: item.address,
-          }))}
-          onSelect={(value: string) => {
-            onSliderChange('address', value);
-            onFilterValueChange({
-              ...formValues,
-              address: value,
-            });
-          }}
-          filterOption={(inputValue: any, option: any) =>
-            (option?.value || '')
-              .toString()
-              .toUpperCase()
-              .indexOf(inputValue.toUpperCase()) !== -1
-          }
-          style={{ width: '100%' }}
-        >
-          <Input.Search
-            size="large"
-            placeholder="Search by Address"
-          />
-        </AutoComplete>
-      </Form.Item>
-      <Form.Item
+        placeholder="Search by Address"
+        options={filteredRows?.map((item: ROWDATA) => ({
+          label: item.address,
+          key: item.station_id,
+          value: item.address,
+        }))}
+      />
+
+      <FormAutoComplete
+        formValues={formValues}
+        onSliderChange={onSliderChange}
+        onFilterValueChange={onFilterValueChange}
         label="Station Name"
-        labelAlign="left"
         name="name"
-      >
-        <AutoComplete
-          allowClear
-          value={formValues.name}
-          options={filteredRows?.map((item: any) => ({
-            label: item.name,
-            key: item.station_id,
-            value: item.name,
-          }))}
-          onSelect={(value: string) => {
-            onSliderChange('name', value);
-            onFilterValueChange({
-              ...formValues,
-              name: value,
-            });
-          }}
-          filterOption={(inputValue: any, option: any) =>
-            (option?.value || '')
-              .toString()
-              .toUpperCase()
-              .indexOf(inputValue.toUpperCase()) !== -1
-          }
-          style={{ width: '100%' }}
-        >
-          <Input.Search
-            size="large"
-            placeholder="Search by Station"
-            // enterButton
-          />
-        </AutoComplete>
-      </Form.Item>
+        placeholder="Search by Station"
+        options={filteredRows?.map((item: ROWDATA) => ({
+          label: item.name,
+          key: item.station_id,
+          value: item.name,
+        }))}
+      />
       <IntegerStep
         label="Number of available bikes +"
         name="num_bikes_available"
@@ -109,7 +71,6 @@ const FilterBox = ({
         onFilterValueChange={onFilterValueChange}
         onSliderChange={onSliderChange}
       />
-
       <IntegerStep
         label="Number of available docks +"
         name="num_docks_available"

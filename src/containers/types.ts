@@ -1,5 +1,9 @@
-import { ROWDATA } from '../types';
+import { FormInstance } from 'antd';
 import { ColDef } from '@ag-grid-community/core';
+import { Dispatch, SetStateAction } from 'react';
+
+import { ROWDATA } from '../types';
+import { SO } from '../utils/searchMarkers';
 
 export enum VIEWS {
   MAP = 'MAP',
@@ -14,18 +18,33 @@ export type TableViewProps = {
   defaultColDef: ColDef;
 };
 
-export type FilterBoxProps = {
-  setFormValues: any;
-  onFilterValueChange: any;
-  onFinish: (values: any) => void;
-  onSliderChange: (name: string, value: any) => void;
-  formValues: {
-    name: string;
-    address: string;
-    num_docks_available: number;
-    num_bikes_available: number;
-    capacity: number;
-    is_renting: boolean;
-  };
-  filteredRows: any;
+export type FilterProps = {
+  name: string;
+  address: string;
+  num_docks_available: number;
+  num_bikes_available: number;
+  capacity: number;
+  is_renting: boolean;
 };
+
+export type BaseForms = {
+  formValues: FilterProps;
+  onFilterValueChange: (filterValues: any) => void;
+  onSliderChange: (name: string, value: any) => void;
+};
+
+export interface FilterBoxProps extends BaseForms {
+  setFormValues: Dispatch<SetStateAction<FilterProps>>;
+  onFinish: () => void;
+  filteredRows: ROWDATA[] | undefined;
+  form: any;
+}
+
+export interface CurrentFilterProps {
+  actFilered: SO;
+  handleFilterClose: (filterName: string) => void;
+  setFormValues: Dispatch<SetStateAction<FilterProps>>;
+  initialValues: FilterProps;
+  isShowClearAll: boolean;
+  form: FormInstance;
+}
