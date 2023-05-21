@@ -26,6 +26,7 @@ const CurrentFilter = ({
               is_renting: '',
             });
           }}
+          data-cy="clear-all"
         >
           Clear All
         </Tag>
@@ -47,6 +48,7 @@ const CurrentFilter = ({
                     ],
                 });
               }}
+              data-cy={`clear_${filterItem}`}
             >
               <strong>
                 {capitalizeFirstCharacter(filterItem)}

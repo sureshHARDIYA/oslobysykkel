@@ -32,6 +32,7 @@ const FormAutoComplete = ({
             .indexOf(inputValue.toUpperCase()) !== -1
         }
         style={{ width: '100%' }}
+        data-cy={`auto_com_${name}`}
       >
         <Input.Search
           size="large"

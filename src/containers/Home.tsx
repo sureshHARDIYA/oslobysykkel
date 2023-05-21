@@ -52,6 +52,7 @@ const Home = () => {
             { key: 'home', title: 'Home' },
             { key: 'mode', title: mode },
           ]}
+          data-cy="breadcrumb"
         />
 
         <div

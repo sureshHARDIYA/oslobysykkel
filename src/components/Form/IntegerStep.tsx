@@ -51,6 +51,7 @@ const IntegerStep = ({
             onChange={(value) =>
               handleSliderChange(value || 0)
             }
+            data-cy={`slider_${name}`}
           />
         </Col>
       </Row>

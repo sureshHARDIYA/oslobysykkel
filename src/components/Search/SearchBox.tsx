@@ -24,6 +24,7 @@ const SearchBox = ({ onSearch }: any): JSX.Element => {
           size="large"
           suffix={suffix}
           onSearch={onSearch}
+          data-cy="search-in-table-view"
         />
       </Col>
     </StyledRow>
