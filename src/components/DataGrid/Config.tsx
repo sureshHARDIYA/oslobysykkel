@@ -15,11 +15,20 @@ export const ColumnNames = [
   {
     field: 'name',
     headerName: 'Station Name',
-    filter: 'agSetColumnFilter',
   },
   {
     field: 'address',
     headerName: 'Address',
+  },
+  {
+    field: 'lat',
+    headerName: 'Latitude',
+    filter: 'agNumberColumnFilter',
+  },
+  {
+    field: 'lon',
+    headerName: 'Longitude',
+    filter: 'agNumberColumnFilter',
   },
   {
     field: 'num_bikes_available',

@@ -6,6 +6,8 @@ import {
 import Home from './containers/Home';
 import ErrorBoundary from './components/ErrorBoundry';
 
+import 'antd/dist/reset.css';
+
 const queryClient = new QueryClient();
 
 function App() {

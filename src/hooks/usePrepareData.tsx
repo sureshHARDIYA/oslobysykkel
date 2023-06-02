@@ -8,22 +8,7 @@ import {
   ColumnNames,
   DefaultColumns,
 } from '../components/DataGrid/Config';
-
-type Station = {
-  station_id: string;
-  name: string;
-  capacity: number;
-  address: string;
-};
-
-type StationStatus = {
-  station_id: string;
-  num_bikes_available: number;
-  num_docks_available: number;
-  is_renting: number;
-};
-
-type ROWDATA = Station & StationStatus;
+import { ROWDATA, Station, StationStatus } from '../types';
 
 export const usePrepareData = () => {
   const defaultColDef = useMemo<ColDef>(
@@ -81,6 +66,8 @@ export const usePrepareData = () => {
             station_id: station.station_id,
             name: station.name,
             capacity: station.capacity ?? 0,
+            lat: station.lat ?? 0,
+            lon: station.lon ?? 0,
             address: station.address,
             num_bikes_available:
               status?.num_bikes_available ?? 0,
