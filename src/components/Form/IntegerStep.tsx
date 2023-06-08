@@ -44,6 +44,7 @@ const IntegerStep = ({
           <InputNumber
             key={`${name}_integernumber`}
             min={minVal}
+            id={name}
             max={maxVal}
             prefix="+"
             style={{ margin: '0 16px' }}
